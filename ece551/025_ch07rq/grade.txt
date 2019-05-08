@@ -1,6 +1,0 @@
-Grading at 01/28/2019:03:51:43.911768
-For commit ID d350a241ca9f864f473745fd467868548d102089
-Reading your quiz answers from answers.txt
-Your quiz answers are correct
-
-Overall Grade: PASSED

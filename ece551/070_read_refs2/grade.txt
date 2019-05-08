@@ -1,5 +1,0 @@
-Grading at 03/05/2019:01:55:27.047584
-For commit ID 21e70bc67a5f8320f5cd4c9f685d6d63eac63a46
-Your file matched the expected output
-
-Overall Grade: PASSED

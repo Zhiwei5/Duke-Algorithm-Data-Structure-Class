@@ -1,6 +1,0 @@
-Grading at 02/06/2019:18:20:39.214608
-For commit ID 3905c288f68362f861c05e5e89becf737f23fcd3
-Your file matched the expected output
-Your output matched what we expected
-
-Overall Grade: A

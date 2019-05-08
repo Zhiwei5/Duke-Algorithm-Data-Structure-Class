@@ -1,5 +1,0 @@
-argc: 3
-hello world
-argv: ./hello
-argv: abc
-argv: jkl

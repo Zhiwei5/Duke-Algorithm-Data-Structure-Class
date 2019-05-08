@@ -1,9 +1,0 @@
-Grading at 02/12/2019:21:07:14.236223
-For commit ID bdaf8c984ee38c6fa038b1ec21b1d9d68383b7d2
-Your file matched the expected output
-Your output matched what we expected
-Attempting to compile test.c
-  - Valgrind was clean (no errors, no memory leaks)
-valgrind was clean
-
-Overall Grade: A
