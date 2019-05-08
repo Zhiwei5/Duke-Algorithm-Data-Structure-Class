@@ -1,0 +1,290 @@
+For the testing, I wrote two testing functions to check the function of my command shell
+Here is the code of the two test function
+
+hello.cpp
+
+#include <cstdlib>
+#include <iostream>
+
+int main(int argc, char * argv[]) {
+  std::cout << "argc: " << argc << std::endl;
+  std::cout << "hello world" << std::endl;
+  int j;
+  for (j = 0; j < argc; j++) {
+    std::cout << "argv: " << argv[j] << std::endl;
+  }
+  exit(EXIT_SUCCESS);
+}
+
+hello_input.cpp
+
+#include <cstdlib>
+#include <iostream>
+#include <string>
+int main(int argc, char * argv[]) {
+  std::cout << "argc: " << argc << std::endl;
+  std::cout << "hello world" << std::endl;
+  std::string input;
+  std::cin >> input;
+  std::cout << input << std::endl;
+  int j;
+  for (j = 0; j < argc; j++) {
+    std::cout << "argv: " << argv[j] << std::endl;
+  }
+  exit(EXIT_SUCCESS);
+}
+
+In addition, my code will have some Valgrind error with the std:unordered_map when you run the command in step3
+
+To run the program you need to first run the Makefile  and then run ./myShell
+
+
+Test step1
+     Case 1
+     Run ./myShell
+     Then run ./hello then you will see the following results
+     "
+     argc: 1
+     hello world
+     argv: ./hello
+     Program exited with status 0
+     myShell:/home/zk28/ece551/mp_miniproject $
+     "
+     which is correct is becuase it only contain one argument so only hello world would be printed in this case
+
+     Case 2
+     Run ./myShell
+     Then run /home/zk28/ece551/mp_miniproject/hello  then you will see the following results
+     "
+     argc: 1
+     hello world
+     argv: /home/zk28/ece551/mp_miniproject/hello
+     Program exited with status 0
+     myShell:/home/zk28/ece551/mp_miniproject $
+     "
+     which is correct is becuase it only contain one argument in this case
+
+     Case 3
+     Run ./myShell
+     Then run /home/zk28/ece551/105_ch27_28_29rq/hello  then you will see the following results
+     "
+     argc: 1
+     hello world
+     argv: /home/zk28/ece551/105_ch27_28_29rq/hello
+     Program exited with status 0
+     myShell:/home/zk28/ece551/mp_miniproject $
+     "
+     which is correct is becuase it only contain one argument in this case
+
+     Case 4
+     Run ./myShell
+     Then run exit then you will see the following results
+     "
+     zk28@ece551:~/ece551/mp_miniproject$ 
+     "
+     which is correct is becuase the shell exit when "exit" command is entered 
+
+Test step2
+     Case 1
+     Run ./myShell
+     Then run hello then you will see the following results
+     "
+     Command hello not found
+
+     "
+     which is correct is becuase it the shell will search in the following directories to find the hello command
+     /usr/local/bin
+     /usr/sbin
+     /usr/bin
+     /sbin
+     /bin
+     /usr/games
+     and because no excuateble file called hello can be found in these directories so should print out command hello not found
+
+     Case 2
+     Run ./myShell
+     Then run ./hello a      b    c    789 you will see the following results
+     "
+     argc: 5
+     hello world
+     argv: ./hello
+     argv: a
+     argv: b
+     argv: c
+     argv: 789
+     Program exited with status 0
+     "
+     which is correct is becuase the command has 5 arguments and each of them is seperared by white space
+     
+     Case 3
+     Run ./myShell
+     Then run /home/zk28/ece551/105_ch27_28_29rq/hello a \ b\  nmnhjhk bg\ jk  then you will see the following results
+     "
+     argc: 5
+     hello world
+     argv: /home/zk28/ece551/105_ch27_28_29rq/hello
+     argv: a
+     argv: b
+     argv: nmnhjhk
+     argv: bg jk
+     Program exited with status 0
+
+     "
+     Which is correct because here are 5 arguments in this case. "bg\ jk" is seperated by "\ " so should be counted be one argument
+
+Test step3
+
+     Case 0
+     Run ./myShell
+     Then run
+     cd ..
+     cd /home/zk28/ece551/105_ch27_28_29rq/
+     you will see the following results
+     "
+     myShell:/home/zk28/ece551 $
+     myShell:/home/zk28/ece551/105_ch27_28_29rq $
+
+     "
+     Which is correct because it changes cuurent directory according to the command  
+     
+     Case 1
+     Run ./myShell
+     Then run
+     set a 10
+     $a
+     you will see the following results
+     "
+     10
+
+     "
+     Which is correct because you set the variable to 10.
+
+     Case 2
+     Run ./myShell
+     Then run
+     set a uoiuio klklkl
+     $a
+     you will see the following results
+     "
+     uoiuio klklkl
+     "
+     Which is correct because you reset variable a to uoiuio klklkl
+
+     Case 3
+     Run ./myShell
+     Then run
+     set b 20
+     inc b
+     $b
+     you will see the following results
+     "
+     inc value: 21
+     21
+     "
+     which is correct becuase the b's value is a number so the result of inc should increment the b's value by one
+
+     Case 4
+     Run ./myShell
+     Then run
+     set b jlkjlkjk
+     inc b
+     $b
+     you will see the following results
+     "
+     inc value: 1
+     1
+     "
+     which is correct becuase the b's value is not number so the result of inc should increment the b's new value '0' by one
+
+     Case 5
+     Run ./myShell
+     Then run
+     set a abc
+     set b def
+     $a$b
+     you will see the following results
+     "
+     abcdef
+     "
+     which is correct becuase it expands the result to the combination of two results 
+
+     Case 6
+     Run ./myShell
+     Then run
+     set a 100
+     $a-
+     you will see the following results
+     "
+     100-
+     "
+     which is correct becuase the result contains the '-' at the end
+
+     Case 7
+     Run ./myShell
+     Then run
+     set test 100
+     $test
+     export test
+     you will see the following results
+     "
+     myShell:/home/zk28/ece551/mp_miniproject $set test 100
+     myShell:/home/zk28/ece551/mp_miniproject $$test 
+     100				      
+     myShell:/home/zk28/ece551/mp_miniproject $export test
+     100
+     "
+     becuae in the export function I wrote the follow code for testing
+     if (key == "test") {
+         std::string test_env = getenv("test");
+    	 std::cout << test_env << std::endl;
+      }
+     The test_env I get from getenv command is the same as I set so it should be correct
+
+
+Test step 4 (redirection)
+     Case 1
+     Run ./myShell
+     Then run
+     ./hello ece551 C++ Algorithm Data Structure > test.txt
+     you will see the following results if you exit the shell and do
+     cat test.txt
+     "
+     argc: 6
+     hello world
+     argv: ./hello
+     argv: ece551
+     argv: C++
+     argv: Algorithm
+     argv: Data
+     argv: Structure
+
+     "
+     which is correct becuase > redirects standard output to test.txt and the content in test.txt is correct
+     
+     Case 2
+     Run ./myShell
+     Then run
+     ./hello_input < test_input.txt
+     you will see the following results
+     "
+     file name is: test_input.txt stream type is: 0
+     argc: 1
+     hello world
+     ece551C++data&algorithm
+     argv: ./hello_input
+     Program exited with status 0
+     "
+     which is correct becuase the ./hello_input successfully receive the info from the test_input.txt
+
+     Case 3
+     Run ./myShell
+     Then run
+     ./nothisfile 2> test.txt
+     you will see the following results if you exit the shell and do
+     cat test.txt
+     "
+     execve execution error
+     "
+     It is correct becuase there is no executable file called nothisfile in the cuurent directory so it would trigger execve failure
+     and print "execve execution error"	in the std::cerr. However, since the command redirect std::cerr to test.txt, when you open the
+     test.txt you can see "execve execution error" in it 
