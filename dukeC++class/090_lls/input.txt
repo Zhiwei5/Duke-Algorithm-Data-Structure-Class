@@ -1,0 +1,3 @@
+A private inner class Node for its nodes, which should have
+    data, next, and prev.  You may wish to write some constructors
+    too.

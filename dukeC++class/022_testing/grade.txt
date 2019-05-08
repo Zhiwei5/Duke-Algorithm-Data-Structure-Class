@@ -1,0 +1,20 @@
+Grading at 01/27/2019:02:21:19.952359
+For commit ID b24b389b8e9e079f9c6735cc3376af166306a8ce
+#################################################
+test input.1:
+Your file matched the expected output
+input.1 passed
+#################################################
+test input.2:
+Your file matched the expected output
+input.2 passed
+#################################################
+test input.3:
+Your file matched the expected output
+input.3 passed
+#################################################
+test input.4:
+Your file matched the expected output
+input.4 passed
+
+Overall Grade: A
