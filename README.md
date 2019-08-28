@@ -1,2 +1,2 @@
-# ECE551
-Project from class ECE551
+# Duke C++ class
+Class assignments and Final project
